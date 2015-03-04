@@ -1,0 +1,21 @@
+{
+  "name": "kendrick/symfony-debug-toolbar-git",
+  "type": "library",
+  "description": "Git information into Symfony Debug Toolbar",
+  "keywords": ["symfony","debug","git"],
+  "homepage": "https://github.com/kendrick-k/symfony-debug-toolbar-git",
+  "license": "MIT",
+  "authors": [
+    {
+      "name": "Kendrick"
+    }
+  ],
+  "require": {
+    "php": ">=5.3.0"
+  },
+  "autoload": {
+    "psr-0": {
+      "symfony-debug-toolbar-git": "src"
+    }
+  }
+}
