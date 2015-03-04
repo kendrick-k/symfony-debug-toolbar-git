@@ -1,0 +1,5 @@
+services:
+    data_collector.datacollector_git:
+        class: Kendrick\SymfonyDebugToolbarGit\DataCollector\GitDataCollector
+        tags:
+          - { name: data_collector, template: "", id:"datacollector_git" }
