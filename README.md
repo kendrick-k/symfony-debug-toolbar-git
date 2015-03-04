@@ -1,0 +1,1 @@
+# Symfony Debug Toolbar Git
