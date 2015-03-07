@@ -1,10 +1,9 @@
 parameters:
-    kendrick.data_collector.template: "KendrickSymfonyDebugToolbarGit:DataCollector:collector"
-    kendrick.data_collector.repository_commit_url: "#"
+    symfony_debugbar_git_data.data_collector.template: "KendrickSymfonyDebugToolbarGit:DataCollector:collector"
 
 services:
     data_collector.datacollector_git:
         class: Kendrick\SymfonyDebugToolbarGit\DataCollector\GitDataCollector
-        arguments: [%kendrick.data_collector.repository_commit_url%]
+        arguments: [%symfony_debugbar_git_data.data_collector.repository_commit_url%]
         tags:
           - { name: data_collector, template: %kendrick.data_collector.template%, id:"datacollector_git" }

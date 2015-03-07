@@ -21,3 +21,17 @@ Useful for local development but also for a continuous integration (CI) process 
 
 ## Installation
 
+### Register into AppKernel
+
+app/AppKernel.php :
+
+    if (in_array($this->getEnvironment(), array('dev', 'test'))) {
+    [...]
+    $bundles[] = new Kendrick\SymfonyDebugToolbarGit\SymfonyDebugToolbarGit();
+    
+### Parameters
+
+app/config/config_dev.yml :
+
+    symfony_debugbar_git_data:
+        repository_commit_url: ""
