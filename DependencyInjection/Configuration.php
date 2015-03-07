@@ -16,7 +16,7 @@ class Configuration implements ConfigurationInterface
     public function getConfigTreeBuilder()
     {
         $treeBuilder = new TreeBuilder();
-        $rootNode = $treeBuilder->root('symfony_debugbar_git_data');
+        $rootNode = $treeBuilder->root('symfony_debug_toolbar_git');
 
 	    $rootNode
 		    ->children()

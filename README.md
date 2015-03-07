@@ -26,12 +26,12 @@ Useful for local development but also for a continuous integration (CI) process 
 app/AppKernel.php :
 
     if (in_array($this->getEnvironment(), array('dev', 'test'))) {
-    [...]
-    $bundles[] = new Kendrick\SymfonyDebugToolbarGit\SymfonyDebugToolbarGit();
+        [...]
+        $bundles[] = new Kendrick\SymfonyDebugToolbarGit\SymfonyDebugToolbarGit();
     
 ### Parameters
 
 app/config/config_dev.yml :
 
-    symfony_debugbar_git_data:
+    symfony_debug_toolbar_git:
         repository_commit_url: ""
