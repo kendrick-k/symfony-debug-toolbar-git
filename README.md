@@ -5,6 +5,8 @@ Symfony Debug Toolbar Git
 
 ### Get the latest git commit into Symfony debugbar
 
+![SymfonyDebugToolbarGit](SymfonyDebugToolbarGit.png "SymfonyDebugToolbarGit")
+
 Information displayed :
 
 + **Branch** : active branch
