@@ -29,9 +29,11 @@ class GitDataCollector extends DataCollector
 	public function collect(Request $request, Response $response, \Exception $exception = null)
 	{
 
-		exec("git log -1", $data);
+		exec("git log -1", $data);//var_dump($data);die;
 
-		if (isset($data)) {
+		if (isset($data) && $data) {
+
+			$this->data['gitData'] = true;
 
 			foreach ($data as $d) {
 
@@ -66,17 +68,35 @@ class GitDataCollector extends DataCollector
 				}
 
 			}
-		}
 
-		unset($data);
+			unset($data);
 
-		exec("git status", $data);
+			exec("git status", $data);
 
-		if (isset($data[0])) {
-			if (strpos($data[0], 'On branch') === 0) {
-				$this->data['branch'] = trim(substr($data[0], 9));
+			if (isset($data[0])) {
+				if (strstr($data[0], 'On branch')) {
+					$this->data['branch'] = trim(substr($data[0], strpos($data[0],'On branch')+9));
+				}
 			}
+
 		}
+		else {
+
+			$this->data['gitData'] = false;
+
+		}
+
+
+	}
+
+	/**
+	 * @return string
+	 */
+	public function getGitData()
+	{
+
+		return $this->getData('gitData');
+
 	}
 
 	/**
@@ -196,7 +216,7 @@ class GitDataCollector extends DataCollector
 	public function getName()
 	{
 
-		return 'collector_commit';
+		return 'datacollector_git';
 
 	}
 

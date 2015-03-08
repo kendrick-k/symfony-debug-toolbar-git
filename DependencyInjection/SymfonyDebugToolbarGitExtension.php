@@ -24,5 +24,7 @@ class SymfonyDebugToolbarGitExtension extends Extension
 
         $loader = new Loader\YamlFileLoader($container, new FileLocator(__DIR__.'/../Resources/config'));
         $loader->load('container.yml');
+
+	    $container->setParameter('symfony_debug_toolbar_git.repository_commit_url', $config['repository_commit_url']);
     }
 }

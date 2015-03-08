@@ -2,6 +2,7 @@
 
 {% block toolbar %}
 
+    {% if collector.gitData %}
     <div class="sf-toolbar-block">
         <div class="sf-toolbar-icon">
             <a href="#">
@@ -45,6 +46,7 @@
             {% endif %}
         </div>
     </div>
+    {% endif %}
 
 {% endblock %}
 
