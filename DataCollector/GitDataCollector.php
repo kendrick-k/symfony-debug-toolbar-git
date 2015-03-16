@@ -41,10 +41,11 @@ class GitDataCollector extends DataCollector
 					$this->data['commit'] = substr($d, 7);
 				} elseif (strpos($d, 'Author') === 0) {
 
-					preg_match('$Author: ([a-zA-Z ]+)<(.+)>$', $d, $author);
+					preg_match('$Author: ([a-zA-Z0-9éèàïçäëöòàè ]+)<(.+)>$', $d, $author);
 
-					$this->data['author'] = trim($author[1]);
-					$this->data['email'] = $author[2];
+					if (isset($author[1])) $this->data['author'] = trim($author[1]);
+					if (isset($author[2])) $this->data['email'] = $author[2];
+
 				} elseif (strpos($d, 'Date') === 0) {
 
 					// Fri Mar 6 16:56:25 2015 +0100
