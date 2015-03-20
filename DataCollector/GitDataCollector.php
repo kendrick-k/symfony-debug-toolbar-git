@@ -41,7 +41,7 @@ class GitDataCollector extends DataCollector
 					$this->data['commit'] = substr($d, 7);
 				} elseif (strpos($d, 'Author') === 0) {
 
-					preg_match('$Author: ([a-zA-Z0-9éèàïçäëöòàè ]+)<(.+)>$', $d, $author);
+					preg_match('$Author: ([^<]+)<(.+)>$', $d, $author);
 
 					if (isset($author[1])) $this->data['author'] = trim($author[1]);
 					if (isset($author[2])) $this->data['email'] = $author[2];
