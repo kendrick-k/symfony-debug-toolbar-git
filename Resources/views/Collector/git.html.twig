@@ -32,7 +32,7 @@
                 {% if collector.commit %}
                     <div class="sf-toolbar-info-piece">
                         {% if collector.commiturl %}
-                            <a href="{{ collector.commiturl }}{{ collector.commit }}">{{ collector.commit }}</a>
+                            <a href="{{ collector.commiturl }}{{ collector.commit }}" target="_blank">{{ collector.commit }}</a>
                         {% else %}
                             {{ collector.commit }}
                         {% endif %}
