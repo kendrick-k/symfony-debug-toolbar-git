@@ -33,6 +33,14 @@ Information displayed :
 
 ## Installation
 
+### Composer
+
+In your composer.json :
+
+    "require": {
+        [...]
+        "kendrick/symfony-debug-toolbar-git": "dev-master"
+
 ### Register into AppKernel
 
 app/AppKernel.php :
