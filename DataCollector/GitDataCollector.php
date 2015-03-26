@@ -5,6 +5,8 @@ namespace Kendrick\SymfonyDebugToolbarGit\DataCollector;
 use Symfony\Component\HttpKernel\DataCollector\DataCollector;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\Filesystem\Filesystem;
+
 
 class GitDataCollector extends DataCollector
 {
@@ -29,17 +31,33 @@ class GitDataCollector extends DataCollector
 	public function collect(Request $request, Response $response, \Exception $exception = null)
 	{
 
-		exec("git log -1", $data);//var_dump($data);die;
+		$fs = new Filesystem();
+
+		// if there is no .git directory
+		if (!$fs->exists('../.git')) {
+			$this->data['gitData'] = false;
+			return;
+		}
+
+		// get latest commit information
+		exec("git log -1", $data);
 
 		if (isset($data) && $data) {
 
+			// there is some information
 			$this->data['gitData'] = true;
 
 			foreach ($data as $d) {
 
 				if (strpos($d, 'commit') === 0) {
+
+					// commit Id
+
 					$this->data['commit'] = substr($d, 7);
+
 				} elseif (strpos($d, 'Author') === 0) {
+
+					// author and email
 
 					preg_match('$Author: ([^<]+)<(.+)>$', $d, $author);
 
@@ -48,24 +66,38 @@ class GitDataCollector extends DataCollector
 
 				} elseif (strpos($d, 'Date') === 0) {
 
-					// Fri Mar 6 16:56:25 2015 +0100
+					// date, ex : Fri Mar 6 16:56:25 2015 +0100
+
 					$date = trim(substr($d, 5));
 
+					// date of commit
 					$dateCommit = date_create($date);
+
+					// actual date at runtime
 					$dateNow = date_create((new \DateTime())->format('Y-m-d H:i:s'));
 
+					// difference
 					$time = date_diff($dateCommit,$dateNow);
 
-					// static time difference
+					// static time difference : minutes and seconds
 					$this->data['timeCommitIntervalMinutes'] = $time->format('%y')*365*24*60+$time->format('%m')*30*24*60+$time->format('%d')*24*60+$time->format('%h')*60+$time->format('%i');
 					$this->data['timeCommitIntervalSeconds'] = $time->format('%s');
 
+					// full readable date
 					$this->data['date'] = $date;
 
 				} elseif (strpos($d, 'Merge') === 0) {
+
+					// merge information
+
 					$this->data['merge'] = trim(substr($d, 6));
+
 				} else {
+
+					// commit message
+
 					$this->data['message'] = trim($d);
+
 				}
 
 			}
@@ -75,13 +107,20 @@ class GitDataCollector extends DataCollector
 			exec("git status", $data);
 
 			if (isset($data[0])) {
+
 				if (strstr($data[0], 'On branch')) {
+
+					// branch name
+
 					$this->data['branch'] = trim(substr($data[0], strpos($data[0],'On branch')+9));
+
 				}
 			}
 
 		}
 		else {
+
+			// no git data
 
 			$this->data['gitData'] = false;
 
@@ -91,6 +130,8 @@ class GitDataCollector extends DataCollector
 	}
 
 	/**
+	 * true if there is some data : used by the view
+	 *
 	 * @return string
 	 */
 	public function getGitData()
@@ -101,6 +142,8 @@ class GitDataCollector extends DataCollector
 	}
 
 	/**
+	 * Actual branch name
+	 *
 	 * @return string
 	 */
 	public function getBranch()
@@ -111,6 +154,8 @@ class GitDataCollector extends DataCollector
 	}
 
 	/**
+	 * Commit ID
+	 *
 	 * @return string
 	 */
 	public function getCommit()
@@ -121,6 +166,8 @@ class GitDataCollector extends DataCollector
 	}
 
 	/**
+	 * Merge information
+	 *
 	 * @return string
 	 */
 	public function getMerge()
@@ -131,6 +178,8 @@ class GitDataCollector extends DataCollector
 	}
 
 	/**
+	 * Author
+	 *
 	 * @return string
 	 */
 	public function getAuthor()
@@ -141,6 +190,8 @@ class GitDataCollector extends DataCollector
 	}
 
 	/**
+	 * Author's email
+	 *
 	 * @return string
 	 */
 	public function getEmail()
@@ -151,6 +202,8 @@ class GitDataCollector extends DataCollector
 	}
 
 	/**
+	 * Commit date
+	 *
 	 * @return string
 	 */
 	public function getDate()
@@ -161,6 +214,8 @@ class GitDataCollector extends DataCollector
 	}
 
 	/**
+	 * Minutes since last commit
+	 *
 	 * @return string
 	 */
 	public function getTimeCommitIntervalMinutes()
@@ -171,6 +226,8 @@ class GitDataCollector extends DataCollector
 	}
 
 	/**
+	 * Seconds since latest commit
+	 *
 	 * @return string
 	 */
 	public function getTimeCommitIntervalSeconds()
@@ -181,6 +238,8 @@ class GitDataCollector extends DataCollector
 	}
 
 	/**
+	 * Commit message
+	 *
 	 * @return string
 	 */
 	public function getMessage()
@@ -191,6 +250,8 @@ class GitDataCollector extends DataCollector
 	}
 
 	/**
+	 * Commit URL
+	 *
 	 * @return string
 	 */
 	public function getCommitUrl()
@@ -201,6 +262,8 @@ class GitDataCollector extends DataCollector
 	}
 
 	/**
+	 * Checks and returns the data
+	 *
 	 * @param $data
 	 * @return string
 	 */
@@ -212,6 +275,8 @@ class GitDataCollector extends DataCollector
 	}
 
 	/**
+	 * DataCollector name : used by service declaration into container.yml
+	 *
 	 * @return string
 	 */
 	public function getName()
