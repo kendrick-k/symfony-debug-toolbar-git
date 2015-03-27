@@ -53,6 +53,10 @@ No alias
     php composer.phar install
     php composer.phar update
 
+### PHPStorm
+
+Menu : Tools > Composer > Add dependency, then type part of the package name : kendrick/symfony-debug-toolbar-git.
+
 ### Register into AppKernel
 
 app/AppKernel.php :
