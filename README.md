@@ -52,8 +52,6 @@ No alias
 
     php composer.phar install
     php composer.phar update
-    
-Then
 
 ### Register into AppKernel
 
