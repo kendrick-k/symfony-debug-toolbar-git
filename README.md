@@ -53,7 +53,7 @@ No alias
     php composer.phar install
     php composer.phar update
 
-### PHPStorm
+### PHPStorm shortcut
 
 Menu : Tools > Composer > Add dependency, then type part of the package name : kendrick/symfony-debug-toolbar-git.
 
@@ -71,3 +71,5 @@ app/config/config_dev.yml :
 
     symfony_debug_toolbar_git:
         repository_commit_url: ""
+        
+repository_commit_url, ex : *https://bitbucket.org/team/project/commits/* or *https://github.com/user/project/commit/*
