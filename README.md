@@ -41,6 +41,20 @@ In your composer.json :
         [...]
         "kendrick/symfony-debug-toolbar-git": "dev-master"
 
+Install or update :
+    
+Terminal alias or Command Line Tools Console of PHPStorm
+
+    c install
+    c update
+
+No alias
+
+    php composer.phar install
+    php composer.phar update
+    
+Then
+
 ### Register into AppKernel
 
 app/AppKernel.php :
