@@ -35,11 +35,13 @@ Information displayed :
 
 ### Composer
 
+composer require kendrick/symfony-debug-toolbar-git
+
 In your composer.json :
 
     "require": {
         [...]
-        "kendrick/symfony-debug-toolbar-git": "dev-master"
+        "kendrick/symfony-debug-toolbar-git": "1.*"
 
 Install or update :
     
