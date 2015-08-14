@@ -5,8 +5,8 @@
     {% if collector.gitData %}
         <div class="sf-toolbar-block">
             <div class="sf-toolbar-icon">
-                <img width="1" height="28" style="padding-top:0px;padding-bottom:0px;" src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7">
                 <a href="#">
+                    <img width="0" height="28" style="width:0px;padding-top:0px;padding-bottom:0px;" src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7">
                     <span class="sf-toolbar-status sf-toolbar-status-green">{{ collector.branch }}</span>
                 <span class="sf-toolbar-status sf-toolbar-status{%
                 if collector.timeCommitIntervalMinutes <= 30%}-green{% elseif collector.timeCommitIntervalMinutes > 60 %}-red{% endif
