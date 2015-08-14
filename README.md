@@ -5,11 +5,15 @@ Symfony Debug Toolbar Git
 
 [![Monthly Downloads](https://poser.pugx.org/kendrick/symfony-debug-toolbar-git/d/monthly.png)](https://packagist.org/packages/kendrick/symfony-debug-toolbar-git) [![Daily Downloads](https://poser.pugx.org/kendrick/symfony-debug-toolbar-git/d/daily.png)](https://packagist.org/packages/kendrick/symfony-debug-toolbar-git)
 
-## Symfony debugbar add-on
+## Symfony toolbar add-on
 
-### Get the latest git commit into Symfony debugbar
+### Get the latest git commit into Symfony debug toolbar
 
 ![SymfonyDebugToolbarGit](SymfonyDebugToolbarGit.png "SymfonyDebugToolbarGit")
+
+Since release 1.3 : no icon (better integration for Symfony 2.8)
+
+![SymfonyDebugToolbarGit2.8](symfony_toolbar_2-8.jpg "SymfonyDebugToolbarGit2.8")
 
 Information displayed :
 
