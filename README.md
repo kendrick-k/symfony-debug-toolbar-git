@@ -9,16 +9,23 @@ Symfony Debug Toolbar Git
 
 ### Get the latest git commit into Symfony debug toolbar
 
+And visualize quickly the latest commit into your repository by clicking on the **Commit ID**.
+
 ![SymfonyDebugToolbarGit](SymfonyDebugToolbarGit.png "SymfonyDebugToolbarGit")
 
-Since release 1.3 : no icon (better integration for Symfony 2.8)
+Since release 1.4 : no icon (better integration for Symfony 2.8)
 
 ![SymfonyDebugToolbarGit2.8](symfony_toolbar_2-8.jpg "SymfonyDebugToolbarGit2.8")
 
 Information displayed :
 
 + **Branch** : active branch
-+ **Time since last commit** : total time in minutes + seconds since last commit at page generation  
++ **Time since last commit** : time since last commit at page generation  
+
+1. less than one hour : minutes + seconds | colored in green, then in red :
+2. more than one hour : hour(s)
+3. more than 24h : count in days
+4. more than 1 month : count in months
 
 Useful for local development but also for a continuous integration (CI) process on a development server.
 
