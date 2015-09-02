@@ -7,6 +7,8 @@ Symfony Debug Toolbar Git
 
 [![Monthly Downloads](https://poser.pugx.org/kendrick/symfony-debug-toolbar-git/d/monthly.png)](https://packagist.org/packages/kendrick/symfony-debug-toolbar-git) [![Daily Downloads](https://poser.pugx.org/kendrick/symfony-debug-toolbar-git/d/daily.png)](https://packagist.org/packages/kendrick/symfony-debug-toolbar-git)
 
+[![travis CI](https://travis-ci.org/kendrick-k/symfony-debug-toolbar-git.svg?branch=develop)](https://travis-ci.org/kendrick-k/symfony-debug-toolbar-git)
+
 ## Symfony toolbar add-on
 
 ### Get the latest git commit into Symfony debug toolbar
