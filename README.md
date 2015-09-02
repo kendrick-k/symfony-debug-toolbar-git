@@ -1,6 +1,8 @@
 Symfony Debug Toolbar Git
 =========================
 
+[![SensioLabsInsight](https://insight.sensiolabs.com/projects/08698266-b800-4ca4-bb20-8ceb65b3f31b/big.png)](https://insight.sensiolabs.com/projects/08698266-b800-4ca4-bb20-8ceb65b3f31b)
+
 [![Latest Stable Version](https://poser.pugx.org/kendrick/symfony-debug-toolbar-git/v/stable.svg)](https://packagist.org/packages/kendrick/symfony-debug-toolbar-git) [![Total Downloads](https://poser.pugx.org/kendrick/symfony-debug-toolbar-git/downloads.svg)](https://packagist.org/packages/kendrick/symfony-debug-toolbar-git) [![Latest Unstable Version](https://poser.pugx.org/kendrick/symfony-debug-toolbar-git/v/unstable.svg)](https://packagist.org/packages/kendrick/symfony-debug-toolbar-git) [![License](https://poser.pugx.org/kendrick/symfony-debug-toolbar-git/license.svg)](https://packagist.org/packages/kendrick/symfony-debug-toolbar-git)
 
 [![Monthly Downloads](https://poser.pugx.org/kendrick/symfony-debug-toolbar-git/d/monthly.png)](https://packagist.org/packages/kendrick/symfony-debug-toolbar-git) [![Daily Downloads](https://poser.pugx.org/kendrick/symfony-debug-toolbar-git/d/daily.png)](https://packagist.org/packages/kendrick/symfony-debug-toolbar-git)
