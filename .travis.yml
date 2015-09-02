@@ -13,8 +13,12 @@ env:
   - SYMFONY_VERSION=2.7.*
   - SYMFONY_VERSION=3.0.*
   - SYMFONY_VERSION=dev-master
+  - TWIG_BUNDLE_VERSION="~2.0"
+  - TWIG_VERSION="~1.12"
 
 before_script:
-  - composer require symfony/http-foundation:${SYMFONY_VERSION}
+  - composer require symfony/framework-bundle:${SYMFONY_VERSION}
+  - composer require symfony/twig-bundle:${TWIG_BUNDLE_VERSION}
+  - composer require twig/twig:${TWIG_VERSION}
 
 script: phpunit --coverage-text
