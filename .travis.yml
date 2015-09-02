@@ -15,5 +15,3 @@ before_script:
   - composer require symfony/framework-bundle:${FRAMEWORK_BUNDLE}
   - composer require symfony/twig-bundle:${TWIG_BUNDLE_VERSION}
   - composer require twig/twig:${TWIG_VERSION}
-
-script: phpunit --coverage-text
