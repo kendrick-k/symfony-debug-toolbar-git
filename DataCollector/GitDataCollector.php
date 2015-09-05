@@ -86,8 +86,8 @@ class GitDataCollector extends DataCollector
 					$dateCommit = date_create($date);
 
 					// actual date at runtime
-					$dateRuntime = date_create(new \DateTime());
-					$dateNow = $dateRuntime->format('Y-m-d H:i:s');
+					$dateRuntime = new \DateTime();
+					$dateNow = date_create($dateRuntime->format('Y-m-d H:i:s'));
 
 					// difference
 					$time = date_diff($dateCommit,$dateNow);
