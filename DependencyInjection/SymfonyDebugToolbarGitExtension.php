@@ -14,16 +14,16 @@ use Symfony\Component\DependencyInjection\Loader;
 class SymfonyDebugToolbarGitExtension extends Extension
 {
 	/**
-	 * {@inheritdoc}
-	 */
+	* {@inheritdoc}
+	*/
 	public function load(array $configs, ContainerBuilder $container)
 	{
-        $configuration = new Configuration();
-        $config = $this->processConfiguration($configuration, $configs);
+		$configuration = new Configuration();
+		$config = $this->processConfiguration($configuration, $configs);
 
-        $loader = new Loader\YamlFileLoader($container, new FileLocator(__DIR__.'/../Resources/config'));
-        $loader->load('container.yml');
+		$loader = new Loader\YamlFileLoader($container, new FileLocator(__DIR__.'/../Resources/config'));
+		$loader->load('container.yml');
 
-	    $container->setParameter('symfony_debug_toolbar_git.repository_commit_url', $config['repository_commit_url']);
+		$container->setParameter('symfony_debug_toolbar_git.repository_commit_url', $config['repository_commit_url']);
 	}
 }

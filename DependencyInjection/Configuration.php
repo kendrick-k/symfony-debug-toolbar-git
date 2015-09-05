@@ -12,19 +12,19 @@ use Symfony\Component\Config\Definition\ConfigurationInterface;
 class Configuration implements ConfigurationInterface
 {
 	/**
-	 * {@inheritdoc}
-	 */
+	* {@inheritdoc}
+	*/
 	public function getConfigTreeBuilder()
 	{
-        $treeBuilder = new TreeBuilder();
-        $rootNode = $treeBuilder->root('symfony_debug_toolbar_git');
+		$treeBuilder = new TreeBuilder();
+		$rootNode = $treeBuilder->root('symfony_debug_toolbar_git');
 
-	    $rootNode
-		    ->children()
-	            ->scalarNode('repository_commit_url')
-		    ->end()
-	    ;
+		$rootNode
+			->children()
+			->scalarNode('repository_commit_url')
+			->end()
+		;
 
-        return $treeBuilder;
+		return $treeBuilder;
 	}
 }
