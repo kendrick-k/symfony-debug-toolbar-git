@@ -7,7 +7,10 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Filesystem\Filesystem;
 
-
+/**
+ * Class GitDataCollector
+ * @package Kendrick\SymfonyDebugToolbarGit\DataCollector
+ */
 class GitDataCollector extends DataCollector
 {
 
@@ -33,8 +36,17 @@ class GitDataCollector extends DataCollector
 
 		$fs = new Filesystem();
 
+		// is there a web directory ?
+
+		if ($fs->exists('../web')) {
+			$gitPath = '../.git';
+		} else {
+			// unit tests
+			$gitPath = '.git';
+		}
+
 		// if there is no .git directory
-		if (!$fs->exists('../.git')) {
+		if (!$fs->exists($gitPath)) {
 			$this->data['gitData'] = false;
 			return;
 		}
