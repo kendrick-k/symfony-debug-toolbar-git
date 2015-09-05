@@ -82,7 +82,7 @@ class GitDataCollector extends DataCollector
 
 				} elseif (strpos($d, 'Date') === 0) {
 
-					$date = trim(substr($d, 5));    // Fri Mar 6 16:56:25 2015 +0100
+					$date = trim(substr($d, 5)); // ddd mmm n hh:mm:ss yyyy +gmt
 
 					// date of commit
 					$dateCommit = date_create($date);
