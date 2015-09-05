@@ -14,8 +14,8 @@ use Symfony\Component\DependencyInjection\Loader;
 class SymfonyDebugToolbarGitExtension extends Extension
 {
 	/**
-	* {@inheritdoc}
-	*/
+	 * {@inheritdoc}
+	 */
 	public function load(array $configs, ContainerBuilder $container)
 	{
 		$configuration = new Configuration();
