@@ -7,7 +7,7 @@ Symfony Debug Toolbar Git
 
 [![Monthly Downloads](https://poser.pugx.org/kendrick/symfony-debug-toolbar-git/d/monthly.png)](https://packagist.org/packages/kendrick/symfony-debug-toolbar-git) [![Daily Downloads](https://poser.pugx.org/kendrick/symfony-debug-toolbar-git/d/daily.png)](https://packagist.org/packages/kendrick/symfony-debug-toolbar-git)
 
-[![travis CI](https://travis-ci.org/kendrick-k/symfony-debug-toolbar-git.svg?branch=develop)](https://travis-ci.org/kendrick-k/symfony-debug-toolbar-git)
+[![Travis CI](https://travis-ci.org/kendrick-k/symfony-debug-toolbar-git.svg?branch=develop)](https://travis-ci.org/kendrick-k/symfony-debug-toolbar-git) [![Scrutinizer CI](https://scrutinizer-ci.com/g/kendrick-k/symfony-debug-toolbar-git/badges/quality-score.png?b=master)](https://scrutinizer-ci.com/g/kendrick-k/symfony-debug-toolbar-git/) [![Scrutinizer CI](https://scrutinizer-ci.com/g/kendrick-k/symfony-debug-toolbar-git/badges/build.png?b=master)](https://scrutinizer-ci.com/g/kendrick-k/symfony-debug-toolbar-git/)
 
 ## Symfony toolbar add-on
 

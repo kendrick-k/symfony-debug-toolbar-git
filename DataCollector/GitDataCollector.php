@@ -54,7 +54,7 @@ class GitDataCollector extends DataCollector
 		// get latest commit information
 		exec("git log -1", $data);
 
-		if (isset($data) && $data) {
+		if (isset($data) && !empty($data)) {
 
 			// there is some information
 			$this->data['gitData'] = true;
@@ -73,14 +73,16 @@ class GitDataCollector extends DataCollector
 
 					preg_match('$Author: ([^<]+)<(.+)>$', $d, $author);
 
-					if (isset($author[1])) $this->data['author'] = trim($author[1]);
-					if (isset($author[2])) $this->data['email'] = $author[2];
+					if (isset($author[1])) {
+						$this->data['author'] = trim($author[1]);
+					}
+					if (isset($author[2])) {
+						$this->data['email'] = $author[2];
+					}
 
 				} elseif (strpos($d, 'Date') === 0) {
 
-					// date, ex : Fri Mar 6 16:56:25 2015 +0100
-
-					$date = trim(substr($d, 5));
+					$date = trim(substr($d, 5));    // Fri Mar 6 16:56:25 2015 +0100
 
 					// date of commit
 					$dateCommit = date_create($date);
@@ -90,7 +92,7 @@ class GitDataCollector extends DataCollector
 					$dateNow = date_create($dateRuntime->format('Y-m-d H:i:s'));
 
 					// difference
-					$time = date_diff($dateCommit,$dateNow);
+					$time = date_diff($dateCommit, $dateNow);
 
 					// static time difference : minutes and seconds
 					$this->data['timeCommitIntervalMinutes'] = $time->format('%y')*365*24*60+$time->format('%m')*30*24*60+$time->format('%d')*24*60+$time->format('%h')*60+$time->format('%i');
@@ -125,13 +127,12 @@ class GitDataCollector extends DataCollector
 
 					// branch name
 
-					$this->data['branch'] = trim(substr($data[0], strpos($data[0],'On branch')+9));
+					$this->data['branch'] = trim(substr($data[0], strpos($data[0], 'On branch')+9));
 
 				}
 			}
 
-		}
-		else {
+		} else {
 
 			// no git data
 
@@ -277,7 +278,7 @@ class GitDataCollector extends DataCollector
 	/**
 	 * Checks and returns the data
 	 *
-	 * @param $data
+	 * @param string $data
 	 * @return string
 	 */
 	private function getData($data)
