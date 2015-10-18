@@ -3,8 +3,8 @@
 namespace Kendrick\SymfonyDebugToolbarGit\DependencyInjection;
 
 use Symfony\Component\Config\Definition\Builder\TreeBuilder;
+use Symfony\Component\Config\Definition\Builder\ArrayNodeDefinition;
 use Symfony\Component\Config\Definition\ConfigurationInterface;
-
 /**
  * Class Configuration
  * @package Kendrick\SymfonyDebugToolbarGit\DependencyInjection
@@ -19,12 +19,26 @@ class Configuration implements ConfigurationInterface
 		$treeBuilder = new TreeBuilder();
 		$rootNode = $treeBuilder->root('symfony_debug_toolbar_git');
 
-		$rootNode
+		$this->addRepositoryCommitUrl($rootNode);
+		$this->addDirGitLocal($rootNode);
+		return $treeBuilder;
+	}
+
+	private function addRepositoryCommitUrl(ArrayNodeDefinition $node)
+	{
+		$node
 			->children()
 			->scalarNode('repository_commit_url')
 			->end()
 		;
+	}
 
-		return $treeBuilder;
+
+	private function addDirGitLocal(ArrayNodeDefinition $node)
+	{
+		$node
+			->children()
+			->scalarNode('repository_local_dir')
+			->end();
 	}
 }

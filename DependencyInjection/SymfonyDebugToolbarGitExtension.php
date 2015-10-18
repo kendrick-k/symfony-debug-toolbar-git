@@ -25,5 +25,6 @@ class SymfonyDebugToolbarGitExtension extends Extension
 		$loader->load('container.yml');
 
 		$container->setParameter('symfony_debug_toolbar_git.repository_commit_url', $config['repository_commit_url']);
+		$container->setParameter('symfony_debug_toolbar_git.repository_local_dir', $config['repository_local_dir']);
 	}
 }
