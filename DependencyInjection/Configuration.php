@@ -29,6 +29,7 @@ class Configuration implements ConfigurationInterface
 		$node
 			->children()
 			->scalarNode('repository_commit_url')
+			->defaultValue('')
 			->end()
 		;
 	}
@@ -38,6 +39,7 @@ class Configuration implements ConfigurationInterface
 		$node
 			->children()
 			->scalarNode('repository_local_dir')
+			->defaultValue('/')
 			->end();
 	}
 }
