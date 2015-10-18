@@ -93,11 +93,11 @@ app/AppKernel.php :
 ####  repository_commit_url example in usage
 
 
-    ...
+    ....
     #example 1: github repository 
-        repository_local_dir: https://github.com/Rafaelgfirmino/project/commit/
+        repository_local_dir: https://github.com/user/project/commit/
     #example 1: gitlab repository 
-        repository_local_dir: https://gitlab.com/rafaelgfirmino/project/commit/
+        repository_local_dir: https://gitlab.com/user/project/commit/
     #example 1: bit repository 
         repository_local_dir: https://bitbucket.org/team/project/commits/
 
