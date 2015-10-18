@@ -33,7 +33,6 @@ class Configuration implements ConfigurationInterface
 		;
 	}
 
-
 	private function addDirGitLocal(ArrayNodeDefinition $node)
 	{
 		$node
@@ -42,3 +41,4 @@ class Configuration implements ConfigurationInterface
 			->end();
 	}
 }
+
