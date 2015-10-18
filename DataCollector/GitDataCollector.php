@@ -28,8 +28,11 @@ class GitDataCollector extends DataCollector
         $this->container = $container;
         $this->data['repositoryCommitUrl'] = $this->container->getParameter('symfony_debug_toolbar_git.repository_commit_url');
 
-        $this->data['gitRootDir'] = $this->container->get('kernel')->getRootDir() . "/..";
-        $this->data['gitRootDir'] .= $this->container->getParameter('symfony_debug_toolbar_git.repository_local_dir') . '/.git';
+        $this->data['gitDir'] = $this->container->get('kernel')->getRootDir() . "/..";
+        $this->data['gitDir'] .= $this->container->getParameter('symfony_debug_toolbar_git.repository_local_dir') . '/.git';
+
+        $this->data['branch'] = $this->shellGit(GitCommand::GIT_CURRENT_BRANCH)[0];
+
     }
 
     /**
@@ -99,30 +102,19 @@ class GitDataCollector extends DataCollector
                 } elseif (strpos($d, 'Merge') === 0) {
 
                     // merge information
-
                     $this->data['merge'] = trim(substr($d, 6));
 
                 } else {
 
                     // commit message
-
                     $this->data['message'] = trim($d);
-
                 }
-
             }
-
             unset($data);
 
         } else {
-
-            // no git data
-
             $this->data['gitData'] = false;
-
         }
-
-
     }
 
     /**
@@ -132,9 +124,7 @@ class GitDataCollector extends DataCollector
      */
     public function getGitData()
     {
-
         return $this->getData('gitData');
-
     }
 
     /**
@@ -144,7 +134,6 @@ class GitDataCollector extends DataCollector
      */
     public function getBranch()
     {
-        $this->data['branch'] = $this->shellGit(GitCommand::GIT_CURRENT_BRANCH)[0];
         return $this->getData('branch');
     }
 
@@ -155,9 +144,7 @@ class GitDataCollector extends DataCollector
      */
     public function getCommit()
     {
-
         return $this->getData('commit');
-
     }
 
     /**
@@ -167,9 +154,7 @@ class GitDataCollector extends DataCollector
      */
     public function getMerge()
     {
-
         return $this->getData('merge');
-
     }
 
     /**
@@ -179,9 +164,7 @@ class GitDataCollector extends DataCollector
      */
     public function getAuthor()
     {
-
         return $this->getData('author');
-
     }
 
     /**
@@ -191,9 +174,7 @@ class GitDataCollector extends DataCollector
      */
     public function getEmail()
     {
-
         return $this->getData('email');
-
     }
 
     /**
@@ -203,9 +184,7 @@ class GitDataCollector extends DataCollector
      */
     public function getDate()
     {
-
         return $this->getData('date');
-
     }
 
     /**
@@ -215,9 +194,7 @@ class GitDataCollector extends DataCollector
      */
     public function getTimeCommitIntervalMinutes()
     {
-
         return $this->getData('timeCommitIntervalMinutes');
-
     }
 
     /**
@@ -227,9 +204,7 @@ class GitDataCollector extends DataCollector
      */
     public function getTimeCommitIntervalSeconds()
     {
-
         return $this->getData('timeCommitIntervalSeconds');
-
     }
 
     /**
@@ -239,9 +214,7 @@ class GitDataCollector extends DataCollector
      */
     public function getMessage()
     {
-
         return $this->getData('message');
-
     }
 
     /**
@@ -251,9 +224,7 @@ class GitDataCollector extends DataCollector
      */
     public function getCommitUrl()
     {
-
         return $this->data['repositoryCommitUrl'];
-
     }
 
     /**
@@ -309,19 +280,19 @@ class GitDataCollector extends DataCollector
     }
 
     /**
-     * @return mixed gitRootDir
+     * @return mixed gitDir
      */
-    private function getGitRootDir()
+    private function getGitDir()
     {
-        return $this->data['gitRootDir'];
+        return $this->data['gitDir'];
     }
 
     /**
      * @return bool
      */
-    private function gitRepositoryExist()
+   final private function gitRepositoryExist()
     {
-        if (file_exists($this->getGitRootDir())) {
+        if (file_exists($this->getGitDir())) {
             return true;
         }
         return false;
@@ -329,7 +300,7 @@ class GitDataCollector extends DataCollector
 
     final private function shellGit($gitCommad)
     {
-        exec('cd '.$this->getGitRootDir().' && '.$gitCommad,$data);
+        exec('cd '.$this->getGitDir().' && '.$gitCommad,$data);
         return $data;
     }
 
