@@ -19,7 +19,7 @@ And visualize quickly the latest commit into your repository by clicking on the 
 
 Since release 1.4 : no icon (better integration for Symfony 2.8)
 
-![SymfonyDebugToolbarGit2.8](symfony_toolbar_2-8.jpg "SymfonyDebugToolbarGit2.8")
+![SymfonyDebugToolbarGit2.8](symfony_toolbar_2-8.png "SymfonyDebugToolbarGit2.8")
 
 Information displayed :
 
@@ -84,9 +84,36 @@ app/AppKernel.php :
     
 ### Parameters
 
-app/config/config_dev.yml :
-
+    # app/config/config_dev.yml
     symfony_debug_toolbar_git:
-        repository_commit_url: ""
+        repository_commit_url: " " #default value  
+        repository_local_dir:  /   #default value
+
+ 
+####  repository_commit_url example in usage
+
+
+    ....
+    #example 1: github repository 
+        repository_local_dir: https://github.com/user/project/commit/
+    #example 1: gitlab repository 
+        repository_local_dir: https://gitlab.com/user/project/commit/
+    #example 1: bit repository 
+        repository_local_dir: https://bitbucket.org/team/project/commits/
+
+
+
+####  repository_local_dir example in usage
+>**Note:**
+>**repository_local_dir**  initial path is **app/..**
+
+        ...
+    # example 1: this is path default  =  app/../
+        repository_local_dir:  /  
+
+    #example 2: this is path to src   = app/.../src
+        repository_local_dir: /src
         
-repository_commit_url, ex : *https://bitbucket.org/team/project/commits/* or *https://github.com/user/project/commit/*
+    #example 3: this is path to bundle  =  app/../src/package/bundleName
+        repository_local_dir: /src/package/bundleName
+    
