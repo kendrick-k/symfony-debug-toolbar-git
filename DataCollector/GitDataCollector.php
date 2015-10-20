@@ -300,4 +300,31 @@ class GitDataCollector extends DataCollector
 
 	}
 
+	/**
+	 * change the icon color depending on the kernel version
+	 *
+	 * #3f3f3f < 2.8
+	 * #AAAAAA >= 2.8
+	 *
+	 * @return string
+	 */
+	public final function getIconColor()
+	{
+		if ((float)$this->getSymfonyVersion() >= 2.8) {
+			return $this->data['iconColor'] = '#AAAAAA';
+		}
+		return $this->data['iconColor'] = '#3F3F3F';#3F3F3F
+	}
+
+	/**
+	 * @return string
+	 */
+	private function getSymfonyVersion()
+	{
+		$symfonyVersion = \Symfony\Component\HttpKernel\Kernel::VERSION;
+		$symfonyVersion = explode('.', $symfonyVersion, -1);
+		$symfonyMajorMinorVersion = implode('.', $symfonyVersion);
+		return $symfonyMajorMinorVersion;
+	}
+
 }
