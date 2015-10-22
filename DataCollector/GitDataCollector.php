@@ -1,5 +1,4 @@
 <?php
-
 namespace Kendrick\SymfonyDebugToolbarGit\DataCollector;
 
 use Symfony\Component\HttpKernel\DataCollector\DataCollector;
@@ -19,9 +18,7 @@ class GitDataCollector extends DataCollector
 	 */
 	public function __construct($repositoryCommitUrl)
 	{
-
 		$this->data['repositoryCommitUrl'] = $repositoryCommitUrl;
-
 	}
 
 	/**
@@ -313,7 +310,7 @@ class GitDataCollector extends DataCollector
 		if ((float)$this->getSymfonyVersion() >= 2.8) {
 			return $this->data['iconColor'] = '#AAAAAA';
 		}
-		return $this->data['iconColor'] = '#3F3F3F';#3F3F3F
+		return $this->data['iconColor'] = '#3F3F3F';
 	}
 
 	/**
