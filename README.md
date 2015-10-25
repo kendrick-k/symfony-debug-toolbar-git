@@ -17,8 +17,6 @@ And visualize quickly the latest commit into your repository by clicking on the 
 
 ![SymfonyDebugToolbarGit](SymfonyDebugToolbarGit.png "SymfonyDebugToolbarGit")
 
-Since release 1.4 : no icon (better integration for Symfony 2.8)
-
 ![SymfonyDebugToolbarGit2.8](symfony_toolbar_2-8.png "SymfonyDebugToolbarGit2.8")
 
 Information displayed :
