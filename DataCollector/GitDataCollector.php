@@ -305,9 +305,9 @@ class GitDataCollector extends DataCollector
 	 *
 	 * @return string
 	 */
-	public final function getIconColor()
+	final public function getIconColor()
 	{
-		if ((float)$this->getSymfonyVersion() >= 2.8) {
+		if ((float) $this->getSymfonyVersion() >= 2.8) {
 			return $this->data['iconColor'] = '#AAAAAA';
 		}
 		return $this->data['iconColor'] = '#3F3F3F';
