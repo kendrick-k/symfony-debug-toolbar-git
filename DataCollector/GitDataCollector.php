@@ -8,9 +8,7 @@ use Symfony\Component\DependencyInjection\ContainerInterface;
 use Symfony\Component\HttpKernel\DataCollector\DataCollector;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
-use Symfony\Component\Filesystem\Filesystem;
 use Kendrick\SymfonyDebugToolbarGit\Git\GitCommand;
-use Symfony\Component\Process\Process;
 
 /**
  * Class GitDataCollector
@@ -18,7 +16,6 @@ use Symfony\Component\Process\Process;
  */
 class GitDataCollector extends DataCollector
 {
-    private $container;
     private $gitService;
 
     /**
@@ -26,9 +23,8 @@ class GitDataCollector extends DataCollector
      */
     public function __construct(ContainerInterface $container)
     {
-        $this->container = $container;
-        $this->gitService = $this->container->get('debug.toolbar.git');
-        $this->data['repositoryCommitUrl'] = $this->container->getParameter('symfony_debug_toolbar_git.repository_commit_url');
+        $this->gitService = $container->get('debug.toolbar.git');
+        $this->data['repositoryCommitUrl'] = $container->getParameter('symfony_debug_toolbar_git.repository_commit_url');
         $this->data['gitData'] = true;
     }
 
@@ -42,7 +38,10 @@ class GitDataCollector extends DataCollector
     public function collect(Request $request, Response $response, \Exception $exception = null)
     {
         if (!$this->gitService->GitDirExist()) {
+
             $this->data['gitData'] = false;
+            $this->data['gitDir'] = $this->gitService->getGitDirInConfiguration();
+
             return;
         }
 
@@ -54,7 +53,6 @@ class GitDataCollector extends DataCollector
         $this->data['merge'] = $this->gitService->shellExec(GitCommand::GIT_ABBREVIATED_PARENT_HASHES. $this->data['commit']);
         $this->getDateCommit();
     }
-
 
     /**
      * true if there is some data : used by the view
@@ -94,6 +92,16 @@ class GitDataCollector extends DataCollector
     public function getMerge()
     {
         return $this->getData('merge');
+    }
+
+    /**
+     * Merge information
+     *
+     * @return string
+     */
+    public function getGitDIr()
+    {
+        return $this->getData('gitDir');
     }
 
     /**
@@ -200,6 +208,7 @@ class GitDataCollector extends DataCollector
         if ((float)$this->getSymfonyVersion() >= 2.8) {
             return $this->data['iconColor'] = '#AAAAAA';
         }
+
         return $this->data['iconColor'] = '#3F3F3F';#3F3F3F
     }
 
@@ -211,6 +220,7 @@ class GitDataCollector extends DataCollector
         $symfonyVersion = \Symfony\Component\HttpKernel\Kernel::VERSION;
         $symfonyVersion = explode('.', $symfonyVersion, -1);
         $symfonyMajorMinorVersion = implode('.', $symfonyVersion);
+
         return $symfonyMajorMinorVersion;
     }
 

@@ -115,3 +115,8 @@ app/AppKernel.php :
     #example 3: this is path to bundle  =  app/../src/package/bundleName
         repository_local_dir: /src/package/bundleName
     
+    
+>**Note:**
+>**Case not exist git directory you will see this message
+    
+![GitDirectoryNotFound](symfony_toolbar_erro_dir.png "Git directory not found")
