@@ -6,7 +6,6 @@
         <div class="sf-toolbar-block">
             <div class="sf-toolbar-icon">
                 <a href="#">
-                    {# style needs this img #}
                     {{ include("@SymfonyDebugToolbarGit/Icons/git.svg.twig") }}
                     <span class="sf-toolbar-status sf-toolbar-status-green">{{ collector.branch }}</span>
                 <span class="sf-toolbar-status sf-toolbar-status{%
@@ -33,7 +32,7 @@
                 {% if collector.commit %}
                     <div class="sf-toolbar-info-piece">
                         {% if collector.commiturl %}
-                            <a href="{{ collector.commiturl }}{{ collector.commit }}" target="_blank">{{ collector.commit[:7] }}</a>
+                            <a href="{{ collector.commiturl }}{{ collector.commit }}" target="_blank">{{collector.commit[:7] }}</a>
                         {% else %}
                             {{ collector.commit }}
                         {% endif %}
@@ -68,18 +67,17 @@
                 {% endif %}
             </div>
         </div>
+    {% else %}
+        <div class="sf-toolbar-block">
+            <div class="sf-toolbar-icon">
+                <a href="#">
+                    {{ include("@SymfonyDebugToolbarGit/Icons/git.svg.twig") }}
+                    <span class="sf-toolbar-status sf-toolbar-status-red">This git directory not exist</span>
+                </a>
+            </div>
+            <div class="sf-toolbar-info" >
+               <h2> {{ collector.gitdir }}</h2>
+            </div>
+        </div>
     {% endif %}
-
-{% endblock %}
-
-{% block head %}
-
-{% endblock %}
-
-{% block menu %}
-
-{% endblock %}
-
-{% block panel %}
-
 {% endblock %}

@@ -19,8 +19,10 @@ class Configuration implements ConfigurationInterface
 	{
 		$treeBuilder = new TreeBuilder();
 		$rootNode = $treeBuilder->root('symfony_debug_toolbar_git');
+
 		$this->addRepositoryCommitUrl($rootNode);
 		$this->addDirGitLocal($rootNode);
+
 		return $treeBuilder;
 	}
 
