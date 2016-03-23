@@ -10,7 +10,9 @@ namespace Kendrick\SymfonyDebugToolbarGit\tests\Git;
 
 
 use Kendrick\SymfonyDebugToolbarGit\Git\Git;
+use Kendrick\SymfonyDebugToolbarGit\Git\GitCommand;
 use Symfony\Component\DependencyInjection\ContainerInterface;
+use Symfony\Component\HttpKernel\KernelInterface;
 
 class GitTest extends \PHPUnit_Framework_TestCase
 {
@@ -26,23 +28,46 @@ class GitTest extends \PHPUnit_Framework_TestCase
     /**
      * @depends testAssertsPreConditions
      */
-    public function testShoulReturnGitDirectory()
+    public function testGetGitDirMethodShouldReturnGitDirectory()
     {
-        $containerMock = $this->getMock(ContainerInterface::class);
-        $containerMock
-            ->expects($this->once())
-            ->method('getParameter')
-            ->will($this->returnValue('teste'));
+        $kernel = $this->getMock(KernelInterface::class);
+        $kernel->expects($this->any())
+            ->method('getRootDir')
+            ->will($this->returnValue('kernelDirectory'));
 
-        $git  = new Git($containerMock);
-        $expectedResult = "teste/.git";
-        $result = $git->getGitDirInConfiguration();
+        $container = $this->getMock(ContainerInterface::class);
+        $container->expects($this->any())
+            ->method('get')
+            ->will($this->returnValue($kernel));
+
+
+        $git  = new Git($container);
+        $expectedResult = "kernelDirectory/../.git";
+        $result = $git->getGitDir();
+
         $this->assertEquals($expectedResult, $result);
     }
 
-    public function testShouldVerifyGitDirExist()
+    /**
+     * @depends testAssertsPreConditions
+     */
+    public function testShouldExecuteExecMethodAndReturnValue()
     {
-        $containerMock = $this->getMock(ContainerInterface::class);
-        
+        $gitMock = $this->getMockBuilder(Git::class)->disableOriginalConstructor()->getMock();
+        $gitMock->method('exec')->willReturn('value');
+        $this->assertEquals('value',$gitMock->exec(GitCommand::GIT_STATUS));
     }
+
+    /**
+     * @depends testAssertsPreConditions
+     */
+    public function testShouldExecuteShellExecMethodAndReturnValue()
+    {
+        $gitMock = $this->getMockBuilder(Git::class)->disableOriginalConstructor()->getMock();
+        $gitMock->method('shellExec')->willReturn('value');
+        $this->assertEquals('value',$gitMock->shellExec(GitCommand::GIT_STATUS));
+    }
+
+
+
 }
