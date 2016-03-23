@@ -24,39 +24,40 @@ class GitDataCollector extends DataCollector
     public function __construct(ContainerInterface $container)
     {
         $this->gitService = $container->get('debug.toolbar.git');
-        $this->data['repositoryCommitUrl'] = $container->getParameter('symfony_debug_toolbar_git.repository_commit_url');
+        $this->data['repositoryCommitUrl'] = $container->getParameter(
+            'symfony_debug_toolbar_git.repository_commit_url'
+        );
         $this->data['gitData'] = true;
     }
 
     /**
      * Collect Git data for DebugBar (branch,commit,author,email,merge,date,message)
-     *
-     * @param Request $request
-     * @param Response $response
+     * @param Request    $request
+     * @param Response   $response
      * @param \Exception $exception
      */
     public function collect(Request $request, Response $response, \Exception $exception = null)
     {
-        if (!$this->gitService->GitDirExist()) {
 
+        if (!file_exists($this->gitService->getGitDir())) {
             $this->data['gitData'] = false;
-            $this->data['gitDir'] = $this->gitService->getGitDirInConfiguration();
-
             return;
         }
-
+        $this->data['gitDir'] = $this->gitService->getGitDir();
         $this->data['branch'] = $this->gitService->shellExec(GitCommand::GIT_CURRENT_BRANCH);
         $this->data['commit'] = $this->gitService->shellExec(GitCommand::GIT_HASH_LAST_COMMIT);
         $this->data['author'] = $this->gitService->shellExec(GitCommand::GIT_AUTHOR_LAST_COMMIT);
         $this->data['email'] = $this->gitService->shellExec(GitCommand::GIT_EMAIL_LAST_COMMIT);
         $this->data['message'] = $this->gitService->shellExec(GitCommand::GIT_MESSAGE_LAST_COMMIT);
-        $this->data['merge'] = $this->gitService->shellExec(GitCommand::GIT_ABBREVIATED_PARENT_HASHES. $this->data['commit']);
+        $this->data['merge'] = $this->gitService->shellExec(
+            GitCommand::GIT_ABBREVIATED_PARENT_HASHES.$this->data['commit']
+        );
         $this->getDateCommit();
+        dump($this->data);
     }
 
     /**
      * true if there is some data : used by the view
-     *
      * @return string
      */
     public function getGitData()
@@ -66,7 +67,6 @@ class GitDataCollector extends DataCollector
 
     /**
      * Actual branch name
-     *
      * @return string
      */
     public function getBranch()
@@ -76,7 +76,6 @@ class GitDataCollector extends DataCollector
 
     /**
      * Commit ID
-     *
      * @return string
      */
     public function getCommit()
@@ -86,7 +85,6 @@ class GitDataCollector extends DataCollector
 
     /**
      * Merge information
-     *
      * @return string
      */
     public function getMerge()
@@ -96,7 +94,6 @@ class GitDataCollector extends DataCollector
 
     /**
      * Merge information
-     *
      * @return string
      */
     public function getGitDIr()
@@ -106,7 +103,6 @@ class GitDataCollector extends DataCollector
 
     /**
      * Author
-     *
      * @return string
      */
     public function getAuthor()
@@ -116,7 +112,6 @@ class GitDataCollector extends DataCollector
 
     /**
      * Author's email
-     *
      * @return string
      */
     public function getEmail()
@@ -126,7 +121,6 @@ class GitDataCollector extends DataCollector
 
     /**
      * Commit date
-     *
      * @return string
      */
     public function getDate()
@@ -136,7 +130,6 @@ class GitDataCollector extends DataCollector
 
     /**
      * Minutes since last commit
-     *
      * @return string
      */
     public function getTimeCommitIntervalMinutes()
@@ -146,7 +139,6 @@ class GitDataCollector extends DataCollector
 
     /**
      * Seconds since latest commit
-     *
      * @return string
      */
     public function getTimeCommitIntervalSeconds()
@@ -156,7 +148,6 @@ class GitDataCollector extends DataCollector
 
     /**
      * Commit message
-     *
      * @return string
      */
     public function getMessage()
@@ -166,7 +157,6 @@ class GitDataCollector extends DataCollector
 
     /**
      * Commit URL
-     *
      * @return string
      */
     public function getCommitUrl()
@@ -176,18 +166,17 @@ class GitDataCollector extends DataCollector
 
     /**
      * Checks and returns the data
-     *
      * @param string $data
      * @return string
      */
     private function getData($data)
     {
+
         return (isset($this->data[$data])) ? $this->data[$data] : '';
     }
 
     /**
      * DataCollector name : used by service declaration into container.yml
-     *
      * @return string
      */
     public function getName()
@@ -197,13 +186,11 @@ class GitDataCollector extends DataCollector
 
     /**
      * Change icons color according to the version of symfony
-     *
      * #3f3f3f < 2.8
      * #AAAAAA >= 2.8
-     *
      * @return string
      */
-    public final function getIconColor()
+    public function getIconColor()
     {
         if ((float)$this->getSymfonyVersion() >= 2.8) {
             return $this->data['iconColor'] = '#AAAAAA';
@@ -245,7 +232,9 @@ class GitDataCollector extends DataCollector
         $time = date_diff($dateCommit, $dateNow);
 
         // static time difference : minutes and seconds
-        $this->data['timeCommitIntervalMinutes'] = $time->format('%y') * 365 * 24 * 60 + $time->format('%m') * 30 * 24 * 60 + $time->format('%d') * 24 * 60 + $time->format('%h') * 60 + $time->format('%i');
+        $this->data['timeCommitIntervalMinutes'] = $time->format('%y') * 365 * 24 * 60 + $time->format(
+                '%m'
+            ) * 30 * 24 * 60 + $time->format('%d') * 24 * 60 + $time->format('%h') * 60 + $time->format('%i');
         // full readable date
         $this->data['date'] = $date;
     }

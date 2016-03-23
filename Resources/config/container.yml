@@ -4,10 +4,10 @@ parameters:
 services:
     data_collector.datacollector_git:
         class: Kendrick\SymfonyDebugToolbarGit\DataCollector\GitDataCollector
-        arguments: [@service_container]
+        arguments: ['@service_container']
         tags:
           - { name: data_collector, template: %symfony_debug_toolbar_git.data_collector.template%, id:"datacollector_git" }
 
     debug.toolbar.git:
         class: Kendrick\SymfonyDebugToolbarGit\Git\Git
-        arguments: [@service_container]
+        arguments: ['@service_container']

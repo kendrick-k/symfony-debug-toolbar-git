@@ -2,6 +2,7 @@
 namespace Kendrick\SymfonyDebugToolbarGit\Git;
 
 use Symfony\Component\DependencyInjection\ContainerInterface;
+
 class Git
 {
     protected $container;
@@ -12,34 +13,24 @@ class Git
     }
 
     /**
-     *
-     * @return string  The Git direcotry especificated in config_dev
-     */
-    public function getGitDirInConfiguration()
-    {
-        $gitDir = $this->container->getParameter('symfony_debug_toolbar_git.repository_local_dir') . '/.git';
-        return $gitDir;
-    }
-
-    /**
      * verifies that the directory exists
      * @return bool
      */
-    public function GitDirExist()
+    public function getGitDir()
     {
-        $gitDir = $this->container->get('kernel')->getRootDir() . "/..";
-        $gitDir .= $this->getGitDirInConfiguration();
+        $gitDir = $this->container->get('kernel')->getRootDir()."/../";
+        $gitDir .= $this->container->getParameter('symfony_debug_toolbar_git.repository_local_dir').'.git';
 
-        return file_exists($gitDir);
+        return $gitDir;
     }
 
     /**
      * @param $command
      * @return string
      */
-    public final function shellExec($command)
+    public function shellExec($command)
     {
-        $command = sprintf('cd %s && %s', $this->GitDirExist(), $command);
+        $command = sprintf('cd %s && %s', $this->getGitDir(), $command);
         $resultCommand = shell_exec($command);
 
         return (string)trim($resultCommand);
@@ -49,12 +40,11 @@ class Git
      * @param $command
      * @return array
      */
-    public final function exec($command)
+    public function exec($command)
     {
-        $command = sprintf('cd %s && %s', $this->GitDirExist(), $command);
+        $command = sprintf('cd %s && %s', $this->getGitDir(), $command);
         exec($command, $resultCommand);
 
         return $resultCommand;
     }
 }
-
