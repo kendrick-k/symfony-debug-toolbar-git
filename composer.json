@@ -11,9 +11,9 @@
     }
   ],
   "require": {
-    "symfony/framework-bundle": "~2.3",
-    "symfony/twig-bundle": "~2.0",
-    "twig/twig": "~1.6"
+    "symfony/framework-bundle": ">=2.3",
+    "symfony/twig-bundle": ">=2.0",
+    "twig/twig": ">=1.6"
   },
   "require-dev": {
     "phpunit/phpunit": "4.8.*"
