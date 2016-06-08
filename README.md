@@ -48,7 +48,7 @@ Information displayed :
 
 ### Composer
 
-composer require kendrick/symfony-debug-toolbar-git
+    composer require kendrick/symfony-debug-toolbar-git
 
 In your composer.json :
 
