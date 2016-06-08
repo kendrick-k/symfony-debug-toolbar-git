@@ -9,7 +9,7 @@ php:
   - hhvm
 
 env:
-  - FRAMEWORK_BUNDLE="~2.3" TWIG_BUNDLE_VERSION="~2.0" TWIG_VERSION="~1.12"
+  - FRAMEWORK_BUNDLE="~2.3" TWIG_BUNDLE_VERSION="~2.0" TWIG_VERSION="~1.6"
 
 before_script:
   - composer self-update
