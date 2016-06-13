@@ -82,9 +82,41 @@ app/AppKernel.php :
     
 ### Parameters
 
-app/config/config_dev.yml :
-
+    # app/config/config_dev.yml
     symfony_debug_toolbar_git:
-        repository_commit_url: ""
+        repository_commit_url: " " #default value  
+        repository_local_dir:  /   #default value
+
+ 
+####  repository_commit_url example in usage
+
+
+    ...
+    #example 1: github repository 
+        repository_local_dir: https://github.com/Rafaelgfirmino/project/commit/
+    #example 1: gitlab repository 
+        repository_local_dir: https://gitlab.com/rafaelgfirmino/project/commit/
+    #example 1: bit repository 
+        repository_local_dir: https://bitbucket.org/team/project/commits/
+
+
+
+####  repository_local_dir example in usage
+>**Note:**
+>**repository_local_dir**  initial path is **app/..**
+
+        ...
+    # example 1: this is path default  =  app/../
+        repository_local_dir:  /  
+
+    #example 2: this is path to src   = app/.../src
+        repository_local_dir: /src
         
-repository_commit_url, ex : *https://bitbucket.org/team/project/commits/* or *https://github.com/user/project/commit/*
+    #example 3: this is path to bundle  =  app/../src/package/bundleName
+        repository_local_dir: /src/package/bundleName
+    
+    
+>**Note:**
+>**Case not exist git directory you will see this message
+    
+![GitDirectoryNotFound](symfony_toolbar_erro_dir.png "Git directory not found")
