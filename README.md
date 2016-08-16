@@ -66,3 +66,7 @@ app/config/config_dev.yml :
         repository_commit_url: ""
         
 repository_commit_url, ex : *https://bitbucket.org/team/project/commits/* or *https://github.com/user/project/commit/*
+
+## More tools
+
+Google Analytics API v4 Symfony bundle : https://github.com/mediafigaro/google-analytics-api-symfony
