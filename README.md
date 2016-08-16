@@ -50,28 +50,6 @@ Information displayed :
 
     composer require kendrick/symfony-debug-toolbar-git
 
-In your composer.json :
-
-    "require": {
-        [...]
-        "kendrick/symfony-debug-toolbar-git": "1.*"
-
-Install or update :
-    
-Terminal alias or Command Line Tools Console of PHPStorm
-
-    c install
-    c update
-
-No alias
-
-    php composer.phar install
-    php composer.phar update
-
-### PHPStorm shortcut
-
-Menu : Tools > Composer > Add dependency, then type part of the package name : kendrick/symfony-debug-toolbar-git.
-
 ### Register into AppKernel
 
 app/AppKernel.php :
