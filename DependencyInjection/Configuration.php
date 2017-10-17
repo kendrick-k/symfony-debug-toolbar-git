@@ -21,8 +21,8 @@ class Configuration implements ConfigurationInterface
 
 		$rootNode
 			->children()
-			->scalarNode('repository_commit_url')
-			->end()
+			->scalarNode('repository_commit_url')->end()
+			->scalarNode('root_dir')->defaultValue(null)->end()
 		;
 
 		return $treeBuilder;
