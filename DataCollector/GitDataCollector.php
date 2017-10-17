@@ -15,10 +15,12 @@ class GitDataCollector extends DataCollector
 
 	/**
 	 * @param $repositoryCommitUrl
+	 * @param $rootDir
 	 */
-	public function __construct($repositoryCommitUrl)
+	public function __construct($repositoryCommitUrl, $rootDir)
 	{
 		$this->data['repositoryCommitUrl'] = $repositoryCommitUrl;
+		$this->data['rootDir'] = $rootDir;
 	}
 
 	/**
@@ -33,9 +35,10 @@ class GitDataCollector extends DataCollector
 
 		$fs = new Filesystem();
 
-		// is there a web directory ?
-
-		if ($fs->exists('../web')) {
+		// Use the root directory config if one is provided, otherwise, attempt to automatically detect the directory.
+		if ($this->data['rootDir']) {
+			$gitPath = $this->data['rootDir'];
+		} elseif ($fs->exists('../web')) {
 			$gitPath = '../.git';
 		} else {
 			// unit tests
