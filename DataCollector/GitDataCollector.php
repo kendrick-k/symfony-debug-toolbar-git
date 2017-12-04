@@ -22,6 +22,14 @@ class GitDataCollector extends DataCollector
 	}
 
 	/**
+         * {@inheritdoc}
+         */
+	public function reset()
+	{
+		$this->data = [];
+	}
+
+	/**
 	 * Collect Git data for DebugBar (branch,commit,author,email,merge,date,message)
 	 *
 	 * @param Request $request
