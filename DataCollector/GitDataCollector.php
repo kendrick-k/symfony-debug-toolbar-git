@@ -301,7 +301,7 @@ class GitDataCollector extends DataCollector
 	public function getName()
 	{
 
-		return 'datacollector_git';
+		return 'data-collector_git';
 
 	}
 
