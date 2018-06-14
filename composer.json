@@ -1,5 +1,5 @@
 {
-  "name": "kendrick/symfony-debug-toolbar-git",
+  "name": "kendrick/symfony-4-debug-toolbar-git",
   "type": "symfony-bundle",
   "description": "Git information into Symfony Debug Toolbar",
   "keywords": ["symfony","debug","git"],
