@@ -43,7 +43,7 @@ class GitDataCollector extends DataCollector
 
 		// is there a web directory ?
 
-		if ($fs->exists('../web')) {
+		if ($fs->exists('../web') || $fs->exists('../public_html') || $fs->exists('../public')) {
 			$gitPath = '../.git';
 		} else {
 			// unit tests
